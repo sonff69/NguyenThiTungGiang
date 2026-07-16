@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Thị Tùng Giang | Digital Portfolio</title>
+    <title>Nguyễn Thị Tùng Giang Portfolio</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
             --primary-dream: #ffd1dc; /* Hồng mộng mơ */
             --white-soft: #fffafb; /* Trắng sữa nhẹ */
             --lavender: #f3e5f5; /* Tím nhẹ mộng mơ */
-            --text-color: #5d4037; /* Màu nâu xám ấm áp, tránh đen thuần */
+            --text-color: #5d4037; /* Màu nâu xám ấm áp chính */
             --text-muted: #8d6e63;
             --font-display: 'Quicksand', sans-serif;
             --font-body: 'Nunito', sans-serif;
@@ -263,16 +263,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .typed-cursor {
-            color: var(--primary);
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
         .hero-desc {
             font-size: 1.15rem;
             color: var(--text-muted);
@@ -408,8 +398,9 @@
             color: var(--text-color);
         }
 
+        /* Sửa màu chữ tiêu đề đồng nhất màu nâu */
         .sec-title span {
-            color: var(--primary);
+            color: var(--text-color);
         }
 
         .sec-desc {
@@ -543,7 +534,7 @@
             color: var(--text-muted);
         }
 
-        /* Banner CTA Drive */
+        /* Banner Drive */
         .banner-drive {
             max-width: 1100px;
             margin: 60px auto 0 auto;
@@ -566,7 +557,7 @@
             margin-bottom: 10px;
         }
 
-        /* Assignments / Projects Section */
+        /* Projects Section */
         .grid-projects {
             max-width: 1200px;
             margin: 0 auto;
@@ -677,6 +668,31 @@
             background: var(--primary);
             color: white;
             border-color: var(--primary);
+        }
+
+        /* Nút liên kết bài tập gốc phong cách mộng mơ */
+        .btn-doc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dream) 100%);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(255, 183, 197, 0.4);
+            margin-bottom: 25px;
+            transition: var(--transition);
+            width: 100%;
+            justify-content: center;
+            font-family: var(--font-display);
+        }
+
+        .btn-doc-link:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 183, 197, 0.6);
         }
 
         /* Reflection Section */
@@ -963,7 +979,7 @@
 </head>
 <body>
 
-    <!-- Dynamic Bubble Background -->
+    <!-- Nền bong bóng động -->
     <div class="bubble-container" id="bubbles"></div>
 
     <!-- Header -->
@@ -1023,6 +1039,7 @@
     <section id="about" style="background: rgba(255,255,255,0.35);">
         <div class="sec-header">
             <span class="sec-badge">Góc Của Giang</span>
+            <!-- Tiêu đề màu nâu đồng nhất -->
             <h2 class="sec-title">Bản Thân <span>& Động Lực</span></h2>
             <p class="sec-desc">Đôi nét về hồ sơ sinh viên học tập của mình tại ULIS và mối duyên lành với Công nghệ số.</p>
         </div>
@@ -1049,14 +1066,16 @@
                         <div class="info-icon"><i class="fa-solid fa-school"></i></div>
                         <div class="info-text">
                             <span>Khoa / Trường</span>
-                            <strong>Đại học Ngoại ngữ - ĐHQGHN (ULIS)</strong>
+                            <!-- Sửa thành chữ viết ngắn theo yêu cầu -->
+                            <strong>Trường ĐH Ngoại ngữ - ĐHQGHN</strong>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon"><i class="fa-solid fa-language"></i></div>
                         <div class="info-text">
                             <span>Ngành học</span>
-                            <strong>Ngôn ngữ và Văn hoá Hàn Quốc</strong>
+                            <!-- Sửa thành chữ viết ngắn theo yêu cầu -->
+                            <strong>Khoa NN&VH HQ</strong>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1084,7 +1103,7 @@
             </div>
         </div>
 
-        <!-- Banner Drive Link trước phần Bài tập -->
+        <!-- Banner Drive Link -->
         <div class="banner-drive">
             <div class="banner-content">
                 <h4><i class="fa-brands fa-google-drive" style="color: #25a15a;"></i> Kho Bài Tập Bản Gốc</h4>
@@ -1101,6 +1120,7 @@
     <section id="assignments">
         <div class="sec-header">
             <span class="sec-badge">Sản Phẩm</span>
+            <!-- Tiêu đề màu nâu đồng nhất -->
             <h2 class="sec-title">Nhật Ký <span>Học Tập</span></h2>
             <p class="sec-desc">Nơi lưu giữ kết quả 6 bài thực hành thực tế, minh chứng cho một hành trình thử thách bản thân.</p>
         </div>
@@ -1253,7 +1273,7 @@
         </div>
     </footer>
 
-    <!-- Modals cho bài tập -->
+    <!-- Modal hiển thị chi tiết bài làm -->
     <div class="modal" id="modal-container" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1261,14 +1281,14 @@
                 <h4 class="modal-title" id="m-title">Tên bài tập</h4>
             </div>
             <div class="modal-body" id="m-body">
-                <!-- Nội dung động tải qua Javascript -->
+                <!-- Nội dung được tải động bằng JavaScript -->
             </div>
         </div>
     </div>
 
-    <!-- JavaScript xử lý tương tác -->
+    <!-- JavaScript tương tác chính -->
     <script>
-        // Smooth header scroll effect
+        // Hiệu ứng cuộn của Header
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
@@ -1278,7 +1298,7 @@
             }
         });
 
-        // Responsive menu toggle
+        // Toggle menu cho mobile
         function toggleMenu() {
             const navbar = document.getElementById('navbar');
             const menuIcon = document.getElementById('menu-icon');
@@ -1297,18 +1317,18 @@
             menuIcon.classList.replace('fa-xmark', 'fa-bars');
         }
 
-        // Generate dreamy background bubbles
+        // Tạo bong bóng mộng mơ nền
         function createBubbles() {
             const container = document.getElementById('bubbles');
             const numBubbles = 15;
             for (let i = 0; i < numBubbles; i++) {
                 const bubble = document.createElement('div');
                 bubble.classList.add('bubble');
-                const size = Math.random() * 40 + 15; // 15px - 55px
+                const size = Math.random() * 40 + 15;
                 const startLeft = Math.random() * 100 + '%';
                 const endLeft = Math.random() * 100 + '%';
-                const duration = Math.random() * 8 + 12; // 12s - 20s
-                const delay = Math.random() * 8; // delay up to 8s
+                const duration = Math.random() * 8 + 12;
+                const delay = Math.random() * 8;
 
                 bubble.style.width = `${size}px`;
                 bubble.style.height = `${size}px`;
@@ -1336,7 +1356,6 @@
             const wordKo = document.getElementById('word-ko');
             const wordVi = document.getElementById('word-vi');
             
-            // Thêm hiệu ứng nháy nhẹ khi đổi từ
             wordKo.style.opacity = 0;
             wordVi.style.opacity = 0;
             
@@ -1348,15 +1367,16 @@
             }, 200);
         }
 
-        // Modal Data & Control
+        // Bộ dữ liệu bài tập lớn bao gồm các nút link tài liệu gốc Google Docs
         const assignmentsData = {
             1: {
                 title: "Thao tác cơ bản với tệp tin và thư mục",
                 badge: "Bài học số 1",
+                docLink: "https://docs.google.com/document/d/1fTodI_lyMhprbizD4s_3r90VF2lxyv8Q/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
                 content: `
                     <div class="modal-section">
                         <h5>Mục tiêu</h5>
-                        <p>Xây dựng hệ thống lưu trữ khoa học trên ổ đĩa vật lý của máy tính cá nhân để chuẩn bị cho các tác vụ lâu dài.</p>
+                        <p>Xây dựng hệ thống lưu trữ khoa học trên ổ đĩa vật lý của máy tính cá nhân để chuẩn bị cho các tác vụ học tập lâu dài.</p>
                     </div>
                     <div class="modal-section">
                         <h5>Quá trình thực hành</h5>
@@ -1366,13 +1386,14 @@
                     </div>
                     <div class="modal-section">
                         <h5>Bài học rút ra</h5>
-                        <p>Tổ chức dữ liệu giống như dọn dẹp bàn học. Việc đặt tên thống nhất và phân tầng thư mục hợp lý giúp mình định vị tệp tin chỉ trong 2 giây thay vì bối rối tìm kiếm.</p>
+                        <p>Tổ chức dữ liệu giống như dọn dẹp bàn học. Việc đặt tên thống nhất và phân tầng thư mục hợp lý giúp mình định vị tệp tin chỉ trong vài giây thay vì bối rối tìm kiếm.</p>
                     </div>
                 `
             },
             2: {
                 title: "Tìm kiếm & Đánh giá tin học thuật",
                 badge: "Bài học số 2",
+                docLink: "https://docs.google.com/document/d/1dRNce3wN2LVEsgcKVuYrrMs57NsRnylc/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
                 content: `
                     <div class="modal-section">
                         <h5>Mục tiêu</h5>
@@ -1392,6 +1413,7 @@
             3: {
                 title: "Viết Prompt hiệu quả cho các tác vụ học tập",
                 badge: "Bài học số 3",
+                docLink: "https://docs.google.com/document/d/1qsH0OEytmg4aEFGkifRbAskr0-a2lHZx/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
                 content: `
                     <div class="modal-section">
                         <h5>Mục tiêu</h5>
@@ -1423,6 +1445,7 @@
             4: {
                 title: "Hợp tác trực tuyến cho dự án nhóm",
                 badge: "Bài học số 4",
+                docLink: "https://docs.google.com/document/d/1q_2l8eYITvMECcLGB7oHacbhD3xPoQva/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
                 content: `
                     <div class="modal-section">
                         <h5>Dự án thực tế</h5>
@@ -1439,6 +1462,7 @@
             5: {
                 title: "Sáng tạo nội dung số bằng công nghệ AI",
                 badge: "Bài học số 5",
+                docLink: "https://docs.google.com/document/d/1VzuWAkzPRuF1T6bH-Mr4excpyr6YrKDR/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
                 content: `
                     <div class="modal-section">
                         <h5>Ý tưởng sáng tạo</h5>
@@ -1455,6 +1479,7 @@
             6: {
                 title: "Sử dụng trí tuệ nhân tạo có trách nhiệm",
                 badge: "Bài học số 6",
+                docLink: "https://docs.google.com/document/d/13_VEQ3qiaunHt--goqEVENaGokv6V9r5/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
                 content: `
                     <div class="modal-section">
                         <h5>Bối cảnh đạo đức học thuật</h5>
@@ -1474,20 +1499,29 @@
             }
         };
 
+        // Hàm mở Modal và nạp động nút liên kết tài liệu lên đầu mỗi bài
         function openModal(id) {
             const data = assignmentsData[id];
             if (!data) return;
 
             document.getElementById('m-title').innerHTML = `<i class="fa-solid fa-sparkles" style="color: var(--primary);"></i> ${data.title}`;
-            document.getElementById('m-body').innerHTML = data.content;
+            
+            // Thiết kế nút link tài liệu bản gốc ở vị trí đầu tiên của modal body
+            const linkButtonHtml = `
+                <a href="${data.docLink}" target="_blank" class="btn-doc-link">
+                    <i class="fa-regular fa-file-word"></i> Xem tài liệu bài làm bản gốc
+                </a>
+            `;
+            
+            document.getElementById('m-body').innerHTML = linkButtonHtml + data.content;
             
             document.getElementById('modal-container').classList.add('active');
-            document.body.style.overflow = 'hidden'; // Khóa cuộn trang nền
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
             document.getElementById('modal-container').classList.remove('active');
-            document.body.style.overflow = 'auto'; // Mở khóa cuộn trang nền
+            document.body.style.overflow = 'auto'; 
         }
 
         // Tự động đóng modal khi nhấn phím Esc

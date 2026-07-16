@@ -26,7 +26,7 @@
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Tối ưu hóa thanh cuộn */
+        /* Thanh cuộn mượt mà */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -43,6 +43,10 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -342,27 +346,10 @@
             transition: var(--transition);
         }
 
-        .avatar-wrapper:hover .avatar-img {
-            transform: scale(1.1) rotate(2deg);
-        }
-
         @keyframes morphing {
             0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
             50% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
             100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
-        }
-
-        .sparkle {
-            position: absolute;
-            font-size: 1.5rem;
-            color: gold;
-            opacity: 0.8;
-            animation: sparkleFloat 4s infinite ease-in-out;
-        }
-
-        @keyframes sparkleFloat {
-            0%, 100% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 0.5; }
-            50% { transform: translateY(-20px) scale(1.2) rotate(180deg); opacity: 1; }
         }
 
         /* Section Base Styles */
@@ -398,9 +385,8 @@
             color: var(--text-color);
         }
 
-        /* Sửa màu chữ tiêu đề đồng nhất màu nâu */
         .sec-title span {
-            color: var(--text-color);
+            color: var(--text-color); /* Đồng nhất 1 màu nâu theo yêu cầu */
         }
 
         .sec-desc {
@@ -532,6 +518,48 @@
         .word-vi {
             font-size: 1.1rem;
             color: var(--text-muted);
+        }
+
+        /* Portfolio Objectives Box */
+        .objective-box {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            border: 1px dashed var(--primary);
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+
+        .objective-box h4 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .objective-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            list-style: none;
+        }
+
+        .objective-list li {
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .objective-list li::before {
+            content: "🌸";
+            position: absolute;
+            left: 0;
+            top: 2px;
         }
 
         /* Banner Drive */
@@ -670,14 +698,14 @@
             border-color: var(--primary);
         }
 
-        /* Nút liên kết bài tập gốc phong cách mộng mơ */
+        /* Nút liên kết tài liệu bản gốc */
         .btn-doc-link {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dream) 100%);
             color: white;
-            padding: 14px 24px;
+            padding: 12px 24px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 700;
@@ -723,7 +751,7 @@
 
         .reflection-block h4 {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--primary);
             margin-bottom: 10px;
             display: flex;
@@ -734,6 +762,27 @@
         .reflection-block p {
             color: var(--text-muted);
             font-size: 0.98rem;
+            margin-bottom: 10px;
+        }
+
+        .reflection-block ul {
+            list-style: none;
+            padding-left: 15px;
+        }
+
+        .reflection-block ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.93rem;
+            color: var(--text-muted);
+        }
+
+        .reflection-block ul li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            top: 2px;
         }
 
         /* Modal Details */
@@ -763,8 +812,8 @@
         .modal-content {
             background: white;
             width: 100%;
-            max-width: 750px;
-            max-height: 85vh;
+            max-width: 850px;
+            max-height: 90vh;
             border-radius: 35px;
             overflow-y: auto;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
@@ -772,6 +821,8 @@
             transform: scale(0.9);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .modal.active .modal-content {
@@ -780,9 +831,10 @@
 
         .modal-header {
             background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dream) 100%);
-            padding: 30px;
+            padding: 25px 30px;
             color: var(--text-color);
             position: relative;
+            flex-shrink: 0;
         }
 
         .modal-title {
@@ -796,7 +848,7 @@
 
         .modal-close {
             position: absolute;
-            top: 25px;
+            top: 20px;
             right: 25px;
             width: 40px;
             height: 40px;
@@ -818,8 +870,67 @@
             background: var(--primary-light);
         }
 
+        /* Modal Menu Tabbed */
+        .modal-tabs {
+            display: flex;
+            background: var(--white-soft);
+            border-bottom: 1px solid var(--primary-light);
+            padding: 0 20px;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .modal-tab {
+            padding: 12px 20px;
+            border: none;
+            background: none;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .modal-tab:hover {
+            color: var(--primary);
+        }
+
+        .modal-tab.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .modal-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
         .modal-body {
-            padding: 35px;
+            padding: 30px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-section {
@@ -841,6 +952,208 @@
             margin-bottom: 10px;
         }
 
+        /* Timeline / Stepper cho Bài 1 */
+        .stepper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 15px;
+            background: var(--white-soft);
+            padding: 15px 20px;
+            border-radius: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .step-num {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .step-content strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Table cho bài 2 */
+        .academic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .academic-table th, .academic-table td {
+            border: 1px solid var(--primary-light);
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        .academic-table th {
+            background-color: var(--primary-light);
+            color: var(--text-color);
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        /* Interactive Simulator cho Bài 3 */
+        .prompt-simulator {
+            background: var(--white-soft);
+            border: 1px dashed var(--primary);
+            border-radius: 25px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .sim-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+
+        .sim-tab-btn {
+            background: white;
+            border: 1px solid var(--primary-light);
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .sim-tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .sim-content {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid rgba(255, 183, 197, 0.15);
+            font-size: 0.9rem;
+        }
+
+        .sim-label {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sim-text {
+            background: #fafafa;
+            padding: 12px;
+            border-radius: 10px;
+            font-family: monospace;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            white-space: pre-line;
+        }
+
+        /* Card Lật cho Bài 6 */
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 180px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 10px rgba(255,182,193,0.15);
+            border-radius: 20px;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--primary-light);
+        }
+
+        .flip-card-front {
+            background-color: white;
+            color: var(--text-color);
+        }
+
+        .flip-card-front i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .flip-card-front strong {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+        }
+
+        .flip-card-back {
+            background-color: var(--primary-light);
+            color: var(--text-color);
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-back p {
+            font-size: 0.85rem;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        /* Comparison Grid */
         .comparison-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -974,6 +1287,10 @@
                 width: 250px;
                 height: 250px;
             }
+            .modal-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
         }
     </style>
 </head>
@@ -1039,7 +1356,6 @@
     <section id="about" style="background: rgba(255,255,255,0.35);">
         <div class="sec-header">
             <span class="sec-badge">Góc Của Giang</span>
-            <!-- Tiêu đề màu nâu đồng nhất -->
             <h2 class="sec-title">Bản Thân <span>& Động Lực</span></h2>
             <p class="sec-desc">Đôi nét về hồ sơ sinh viên học tập của mình tại ULIS và mối duyên lành với Công nghệ số.</p>
         </div>
@@ -1066,7 +1382,6 @@
                         <div class="info-icon"><i class="fa-solid fa-school"></i></div>
                         <div class="info-text">
                             <span>Khoa / Trường</span>
-                            <!-- Sửa thành chữ viết ngắn theo yêu cầu -->
                             <strong>Trường ĐH Ngoại ngữ - ĐHQGHN</strong>
                         </div>
                     </div>
@@ -1074,7 +1389,6 @@
                         <div class="info-icon"><i class="fa-solid fa-language"></i></div>
                         <div class="info-text">
                             <span>Ngành học</span>
-                            <!-- Sửa thành chữ viết ngắn theo yêu cầu -->
                             <strong>Khoa NN&VH HQ</strong>
                         </div>
                     </div>
@@ -1101,6 +1415,16 @@
                     Là một sinh viên thuộc khối ngành xã hội, mình từng nghĩ công nghệ là thứ gì đó khô khan. Nhưng học phần này đã cho mình nhận ra: Công nghệ số và AI chính là "đôi cánh" để lan toả cái đẹp của ngôn ngữ đi xa hơn 🌸
                 </p>
             </div>
+
+            <!-- Mục tiêu Portfolio (Mới bổ sung theo yêu cầu) -->
+            <div class="objective-box">
+                <h4><i class="fa-solid fa-bullseye"></i> Mục tiêu thiết lập Digital Portfolio</h4>
+                <ul class="objective-list">
+                    <li><strong>Hệ thống hóa học tập:</strong> Lưu trữ và xâu chuỗi toàn bộ kỹ năng số và hiểu biết về trí tuệ nhân tạo đã được tiếp thu trong suốt học kỳ.</li>
+                    <li><strong>Phát triển thương hiệu cá nhân:</strong> Tạo dựng một Portfolio kỹ thuật số cá tính, thể hiện bản sắc của một sinh viên ULIS thời đại mới.</li>
+                    <li><strong>Tự đánh giá & Cải tiến:</strong> Nhìn nhận chặng đường đã qua, rút kinh nghiệm từ những khó khăn, định hình thói quen áp dụng công nghệ số lâu dài.</li>
+                </ul>
+            </div>
         </div>
 
         <!-- Banner Drive Link -->
@@ -1120,7 +1444,6 @@
     <section id="assignments">
         <div class="sec-header">
             <span class="sec-badge">Sản Phẩm</span>
-            <!-- Tiêu đề màu nâu đồng nhất -->
             <h2 class="sec-title">Nhật Ký <span>Học Tập</span></h2>
             <p class="sec-desc">Nơi lưu giữ kết quả 6 bài thực hành thực tế, minh chứng cho một hành trình thử thách bản thân.</p>
         </div>
@@ -1241,16 +1564,24 @@
         <div class="reflection-container">
             <div class="reflection-content">
                 <div class="reflection-block">
-                    <h4><i class="fa-solid fa-star-of-david"></i> Vượt qua ranh giới định kiến</h4>
-                    <p>Là sinh viên ngôn ngữ, công nghệ đối với mình từng là điều xa vời. Tuy nhiên, sau quá trình tự xây dựng và triển khai các dự án học thuật, mình nhận ra công nghệ không khó hiểu nếu chúng ta tiếp cận một cách khoa học và mộc mạc.</p>
+                    <h4><i class="fa-solid fa-star-of-david"></i> Thuận lợi trong quá trình thực hiện</h4>
+                    <ul>
+                        <li><strong>Bộ công cụ trực quan:</strong> Sự phát triển của các mô hình AI có giao diện dễ dùng (Gemini, Claude, ChatGPT) giúp một sinh viên khối ngành ngôn ngữ dễ dàng bắt nhịp mà không cần kiến thức lập trình phức tạp.</li>
+                        <li><strong>Chủ đề thực tế, sinh động:</strong> Đề tài nghiên cứu Hallyu hay thiết kế infographic Lễ hội Tây Nguyên đều rất gần gũi, gợi cảm hứng sáng tạo mạnh mẽ.</li>
+                        <li><strong>Môi trường ULIS năng động:</strong> Tinh thần tôn trọng liêm chính học thuật và khuyến khích đổi mới sáng tạo từ nhà trường là động lực to lớn giúp mình tự tin ứng dụng AI.</li>
+                    </ul>
                 </div>
                 <div class="reflection-block">
-                    <h4><i class="fa-solid fa-feather-pointed"></i> Bản lĩnh kiểm chứng tri thức</h4>
-                    <p>AI là một trợ tá đắc lực có thể soạn thảo, dịch thuật và vẽ tranh trong nháy mắt. Thế nhưng, con người mới chính là chủ thể thẩm định cuối cùng. Giang tự hứa sẽ không bao giờ "nhận vơ" kết quả của máy móc mà luôn dùng tư duy phản biện để tối ưu hóa.</p>
+                    <h4><i class="fa-solid fa-triangle-exclamation"></i> Khó khăn đã vượt qua</h4>
+                    <ul>
+                        <li><strong>Hạn chế kỹ năng công nghệ ban đầu:</strong> Thao tác quản lý tệp tin chuyên sâu hay phân quyền thư mục ban đầu làm mình bối rối, dễ quên kỷ luật đặt tên file.</li>
+                        <li><strong>Ảo tưởng thông tin của AI (AI Hallucination):</strong> Gặp phải trường hợp AI cung cấp dữ liệu chưa chính xác hoặc thiếu cập nhật về mốc thời gian UNESCO vinh danh di sản. Mình đã phải rèn luyện thói quen tra cứu chéo để kiểm chứng kỹ càng.</li>
+                        <li><strong>Cản trở trong việc thiết lập Prompt:</strong> Ban đầu chỉ đặt câu lệnh ngắn nên kết quả nhận được rất mông lung, sáo rỗng. Phải mất nhiều thời gian thử nghiệm để thuần thục kỹ nghệ CoT (Chain-of-Thought) và Few-shot.</li>
+                    </ul>
                 </div>
                 <div class="reflection-block">
-                    <h4><i class="fa-solid fa-network-wired"></i> Bài học về kỷ luật số và phối hợp</h4>
-                    <p>Quản lý file đúng quy chuẩn, phân quyền thư mục rõ ràng, thiết lập bucket công việc chi tiết - những việc tưởng chừng nhỏ bé lại chính là nền tảng để tránh hỗn loạn trong tương lai làm việc chuyên nghiệp sắp tới.</p>
+                    <h4><i class="fa-solid fa-feather-pointed"></i> Lời khuyên & Bài học định hình tương lai</h4>
+                    <p>Hãy xem AI như một "cộng sự" thay vì một "công cụ" thay thế. Trí tuệ nhân tạo chỉ phát huy giá trị tối đa khi được dẫn dắt bởi một bộ não có tư duy phản biện độc lập, có kỷ luật thép và luôn tôn trọng đạo đức liêm chính học thuật.</p>
                 </div>
             </div>
         </div>
@@ -1273,15 +1604,22 @@
         </div>
     </footer>
 
-    <!-- Modal hiển thị chi tiết bài làm -->
+    <!-- Modal hiển thị chi tiết bài làm với Tabbed Menu -->
     <div class="modal" id="modal-container" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header">
                 <h4 class="modal-title" id="m-title">Tên bài tập</h4>
             </div>
+            <!-- Menu các Tab của Modal -->
+            <div class="modal-tabs">
+                <button class="modal-tab active" onclick="switchTab(event, 'tab-intro')">Mục tiêu</button>
+                <button class="modal-tab" onclick="switchTab(event, 'tab-process')">Quá trình thực hiện</button>
+                <button class="modal-tab" onclick="switchTab(event, 'tab-result')">Kết quả & So sánh</button>
+                <button class="modal-tab" onclick="switchTab(event, 'tab-lessons')">Bài học rút ra</button>
+            </div>
             <div class="modal-body" id="m-body">
-                <!-- Nội dung được tải động bằng JavaScript -->
+                <!-- Nội dung các Tab sẽ được JS render động tại đây -->
             </div>
         </div>
     </div>
@@ -1367,167 +1705,513 @@
             }, 200);
         }
 
-        // Bộ dữ liệu bài tập lớn bao gồm các nút link tài liệu gốc Google Docs
+        // Chuyển đổi tab trong modal
+        function switchTab(event, tabId) {
+            const modalTabs = document.querySelectorAll('.modal-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            modalTabs.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Bộ dữ liệu chi tiết của 6 bài tập lớn (Bám sát file gốc, không cắt giảm)
         const assignmentsData = {
             1: {
                 title: "Thao tác cơ bản với tệp tin và thư mục",
-                badge: "Bài học số 1",
                 docLink: "https://docs.google.com/document/d/1fTodI_lyMhprbizD4s_3r90VF2lxyv8Q/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
-                content: `
+                intro: `
                     <div class="modal-section">
-                        <h5>Mục tiêu</h5>
-                        <p>Xây dựng hệ thống lưu trữ khoa học trên ổ đĩa vật lý của máy tính cá nhân để chuẩn bị cho các tác vụ học tập lâu dài.</p>
+                        <h5>Mục tiêu bài thực hành 1</h5>
+                        <p>Làm quen với hệ thống tệp và cấu trúc thư mục trên Windows. Học cách quản trị không gian làm việc cá nhân một cách có tổ chức, chuyên nghiệp và tối ưu để làm nền tảng lưu trữ lâu dài trong suốt quá trình học đại học.</p>
                     </div>
+                `,
+                process: `
                     <div class="modal-section">
-                        <h5>Quá trình thực hành</h5>
-                        <p>1. Thiết lập thư mục gốc có quy chuẩn đặt tên rõ ràng: <strong>ThucHanh_NguyenThiTungGiang</strong> dưới phân vùng ổ D.</p>
-                        <p>2. Khởi tạo tài liệu ghi chú nhanh <strong>GhiChu.txt</strong>, thực hiện các thao tác đổi tên thành tệp quan trọng, sao lưu và phân bổ vào thư mục nhánh <strong>TaiLieu</strong>.</p>
-                        <p>3. Làm quen với tính năng thao tác tệp nâng cao, di chuyển, thực hiện xóa vĩnh viễn tệp rác bằng tổ hợp <em>Shift + Delete</em> và thử nghiệm khôi phục từ Recycle Bin.</p>
+                        <h5>Quá trình thực hiện chi tiết (12 bước tiêu chuẩn)</h5>
+                        <div class="stepper">
+                            <div class="step-item">
+                                <span class="step-num">1</span>
+                                <div class="step-content">
+                                    <strong>Mở File Explorer</strong>
+                                    <p>Sử dụng tổ hợp phím tắt nhanh <code>Windows + E</code> hoặc nhấn trực tiếp vào biểu tượng thư mục màu vàng quen thuộc trên thanh tác vụ (Taskbar).</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">2</span>
+                                <div class="step-content">
+                                    <strong>Truy cập ổ đĩa không phải hệ thống</strong>
+                                    <p>Tại khung điều hướng bên trái, chọn <em>This PC</em> và bấm đúp chuột vào ổ đĩa phụ (ổ đĩa D: hoặc E:). Trường hợp máy chỉ có duy nhất ổ đĩa hệ thống C:, truy cập thư mục <em>Documents</em>.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">3</span>
+                                <div class="step-content">
+                                    <strong>Tạo thư mục mới cấp 1</strong>
+                                    <p>Nhấp chuột phải vào không gian trống -> chọn <em>New</em> -> <em>Folder</em>. Đặt tên thư mục tuân thủ cú pháp học thuật: <code>ThucHanh_NguyenThiTungGiang</code> và nhấn Enter.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">4</span>
+                                <div class="step-content">
+                                    <strong>Truy cập thư mục vừa tạo</strong>
+                                    <p>Bấm đúp chuột vào thư mục <code>ThucHanh_NguyenThiTungGiang</code> để vào bên trong không gian làm việc trống.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">5</span>
+                                <div class="step-content">
+                                    <strong>Tạo tệp tin văn bản thô</strong>
+                                    <p>Nhấp chuột phải -> <em>New</em> -> chọn <em>Text Document</em>. Thiết lập tên tệp tin ban đầu là <code>GhiChu.txt</code> và lưu lại.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">6</span>
+                                <div class="step-content">
+                                    <strong>Thao tác đổi tên tệp tin</strong>
+                                    <p>Nhấp chuột phải vào tệp <code>GhiChu.txt</code> -> chọn biểu tượng <em>Rename (F2)</em>. Thực hiện thay tên mới mang tính định danh cao hơn: <code>GhiChuQuanTrong.txt</code>.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">7</span>
+                                <div class="step-content">
+                                    <strong>Tạo thư mục con cấp 2</strong>
+                                    <p>Trong thư mục gốc <code>ThucHanh_NguyenThiTungGiang</code>, tiếp tục tạo một thư mục nhánh con mới bằng cách chuột phải -> <em>New</em> -> <em>Folder</em> và đặt tên là <code>TaiLieu</code>.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">8</span>
+                                <div class="step-content">
+                                    <strong>Thực hiện sao chép tệp tin (Copy & Paste)</strong>
+                                    <p>Nhấp chuột phải vào tệp <code>GhiChuQuanTrong.txt</code> chọn biểu tượng <em>Copy (Ctrl + C)</em>. Truy cập thư mục <code>TaiLieu</code>, nhấp chuột phải chọn <em>Paste (Ctrl + V)</em> để nhân bản tệp.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">9</span>
+                                <div class="step-content">
+                                    <strong>Thực hiện di chuyển tệp tin (Cut & Paste)</strong>
+                                    <p>Quay lại thư mục cha, tạo file <code>DiChuyen.txt</code>. Chuột phải vào file này chọn biểu tượng chiếc kéo <em>Cut (Ctrl + X)</em>. Vào thư mục <code>TaiLieu</code> và dán <em>Paste (Ctrl + V)</em>.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">10</span>
+                                <div class="step-content">
+                                    <strong>Xóa tệp tin thông thường</strong>
+                                    <p>Truy cập thư mục con <code>TaiLieu</code>, nhấp chuột phải vào tệp <code>GhiChuQuanTrong.txt</code> và nhấn chọn biểu tượng thùng rác <em>Delete</em> để chuyển tệp vào Thùng rác hệ thống (Recycle Bin).</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">11</span>
+                                <div class="step-content">
+                                    <strong>Xóa tệp tin vĩnh viễn không qua thùng rác</strong>
+                                    <p>Chọn tệp <code>DiChuyen.txt</code> trong thư mục <code>TaiLieu</code>, nhấn giữ tổ hợp phím <code>Shift + Delete</code>. Một hộp thoại cảnh báo hiện ra, chọn <em>Yes</em> để xóa bỏ tệp vĩnh viễn khỏi ổ cứng.</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">12</span>
+                                <div class="step-content">
+                                    <strong>Khôi phục tệp tin từ Thùng rác (Recycle Bin)</strong>
+                                    <p>Mở ứng dụng <em>Recycle Bin</em> trên Desktop. Tìm tệp <code>GhiChuQuanTrong.txt</code> đã bị xóa ở bước 10, chuột phải vào tệp và nhấn <em>Restore</em> để tệp tự quay lại thư mục <code>TaiLieu</code>.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                `,
+                result: `
                     <div class="modal-section">
-                        <h5>Bài học rút ra</h5>
-                        <p>Tổ chức dữ liệu giống như dọn dẹp bàn học. Việc đặt tên thống nhất và phân tầng thư mục hợp lý giúp mình định vị tệp tin chỉ trong vài giây thay vì bối rối tìm kiếm.</p>
+                        <h5>Minh họa cấu trúc thư mục hoàn thành</h5>
+                        <p>Hệ thống cấu trúc lưu trữ sau 12 bước thực hành đạt tiêu chuẩn khoa học:</p>
+                        <pre style="background: #fafafa; padding: 15px; border-radius: 10px; font-family: monospace;">
+[Local Disk (D:)]
+  └── ThucHanh_NguyenThiTungGiang/ (Thư mục gốc)
+        ├── GhiChuQuanTrong.txt (Tệp tin gốc)
+        └── TaiLieu/ (Thư mục con cấp 2)
+              └── GhiChuQuanTrong.txt (Tệp sao chép sau khi đã khôi phục)
+                        </pre>
+                    </div>
+                `,
+                lessons: `
+                    <div class="modal-section">
+                        <h5>Bài học kinh nghiệm từ Bài tập 1</h5>
+                        <p><strong>Thói quen thiết lập kỷ luật số:</strong> Bản thân mình trước đây thường lưu file bừa bãi ngoài màn hình desktop dẫn đến mất mát hoặc lẫn lộn dữ liệu. Bài tập này đã giúp mình định hình tư duy tổ chức dữ liệu dạng cây thư mục để làm việc khoa học hơn.</p>
                     </div>
                 `
             },
             2: {
                 title: "Tìm kiếm & Đánh giá tin học thuật",
-                badge: "Bài học số 2",
                 docLink: "https://docs.google.com/document/d/1dRNce3wN2LVEsgcKVuYrrMs57NsRnylc/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
-                content: `
+                intro: `
                     <div class="modal-section">
-                        <h5>Mục tiêu</h5>
-                        <p>Tìm hiểu đề tài "Ảnh hưởng của làn sóng Hallyu (Hàn Quốc) tại Việt Nam" một cách sâu sắc từ các bài báo khoa học và tạp chí chính thống.</p>
+                        <h5>Mục tiêu bài thực hành 2</h5>
+                        <p>Tiến hành nghiên cứu khoa học học thuật chuyên nghiệp với đề tài "Ảnh hưởng của làn sóng Hallyu (Hàn Quốc) đến Việt Nam". Rèn luyện kỹ năng sử dụng các toán tử tìm kiếm nâng cao để sàng lọc tài liệu chính thống và đánh giá độ tin cậy của tài liệu khoa học.</p>
                     </div>
+                `,
+                process: `
                     <div class="modal-section">
-                        <h5>Phương pháp ứng dụng</h5>
-                        <p>Giang đã sử dụng các toán tử tìm kiếm thông minh như <code>"Hallyu" AND "Việt Nam" filetype:pdf</code> để trực tiếp lọc lấy các đề tài khoa học giá trị, thay vì tìm kiếm sơ sài trên Google thường.</p>
-                        <p>Đồng thời thiết lập bảng danh mục tài liệu tham khảo chuẩn mực quốc tế với đầy đủ tác giả, tạp chí (Ví dụ: Tạp chí Nghiên cứu Đông Bắc Á, Tạp chí Hàn Quốc), năm xuất bản, trang trích dẫn rõ ràng.</p>
+                        <h5>Quá trình thực hành nghiên cứu</h5>
+                        <p>1. <strong>Tìm kiếm nâng cao:</strong> Thay vì tìm kiếm chung chung dễ dính rác thông tin, Giang áp dụng toán tử: <code>"Hallyu" AND "Việt Nam" filetype:pdf</code> để truy quét các bài báo cáo, luận văn uy tín dạng PDF.</p>
+                        <p>2. <strong>Xây dựng nội dung báo cáo:</strong></p>
+                        <ul style="padding-left: 20px; margin-bottom: 15px;">
+                            <li><strong>Phần I. Định nghĩa:</strong> Hallyu (한류) là làn sóng văn hóa Hàn Quốc, từ ẩm thực, thời trang, điện ảnh đến phong cách sống và thiết bị tiêu dùng (điện thoại Samsung, tủ lạnh LG, nồi cơm Cuckoo...).</li>
+                            <li><strong>Phần II. Hiện trạng:</strong> Phân tích 5 phương diện rõ rệt: Giải trí (Kpop, K-drama), Thời trang & Mỹ phẩm (Innisfree, Laneige), Ẩm thực (kim chi, cơm trộn, mì cay, gochujang), Giáo dục & Ngôn ngữ (nhu cầu học tiếng Hàn bùng nổ), và Tác động tiêu cực (tâm lý sính ngoại thái quá, lệch chuẩn thẩm mỹ).</li>
+                            <li><strong>Phần III. Nguyên nhân:</strong> Do chiến lược bài bản của chính phủ Hàn (qua cơ quan KOCCA), chất lượng sản phẩm vượt trội, tận dụng mạng xã hội; và sự tương đồng sâu sắc về Nho giáo, giá trị gia đình giữa Việt - Hàn.</li>
+                            <li><strong>Phần IV. Giải pháp:</strong> Đồng bộ từ Nhà nước (phát triển văn hóa nội sinh), gia đình & nhà trường (định hướng thẩm mỹ lành mạnh) và bản thân người trẻ (tiếp thu thông thái, giữ gìn bản sắc).</li>
+                        </ul>
                     </div>
+                `,
+                result: `
                     <div class="modal-section">
-                        <h5>Ý nghĩa chuyên ngành</h5>
-                        <p>Giúp một sinh viên ngành Hàn Quốc học như mình rèn luyện kỹ năng phân tích hai mặt tích cực/tiêu cực của văn hoá ngoại nhập, từ đó đưa ra hướng tiếp thu "hòa nhập nhưng không hòa tan".</p>
+                        <h5>Bảng danh mục 6 bài báo khoa học đã thu thập & đánh giá</h5>
+                        <div style="overflow-x: auto;">
+                            <table class="academic-table">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tài liệu tham khảo (Chuẩn APA)</th>
+                                        <th>Độ tin cậy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Mai, N. C. (2020). Tạp chí Hàn Quốc, Số 2 (32), tr. 23.</td>
+                                        <td><strong>Rất cao</strong> (Tạp chí khoa học chuyên ngành)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Phan, T. K. A. (2017). Ảnh hưởng Hàn lưu đến giới trẻ Việt Nam (Từ góc nhìn của một người làm giáo dục). Tạp chí khoa học quản lí giáo dục, Số 2 (14), tr. 193.</td>
+                                        <td><strong>Rất cao</strong> (Góc nhìn giáo dục học thuật)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Trần, T. H. & Cao, T. H. B. (2015). Nghiên cứu Đông Bắc Á. Nghiên cứu khoa học, Số 4 (170), tr. 72.</td>
+                                        <td><strong>Rất cao</strong> (Đánh giá ẩm thực và tính cẩn trọng)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Cao, T. H. B. (chủ biên). (2021). Tổng mục nghiên cứu Hàn Quốc học tại Việt Nam giai đoạn 2015-2020. Nxb Khoa học xã hội.</td>
+                                        <td><strong>Tuyệt đối</strong> (NXB uy tín nhà nước)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>VTV (2024). GenZ – đối tượng thẩm thấu làn sóng Hallyu mạnh mẽ nhất. Truy cập từ vtv.vn.</td>
+                                        <td><strong>Cao</strong> (Kênh truyền thông quốc gia)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Phạm, H. (2023). Cùng giải mã làn sóng Hallyu tại Việt Nam. Báo Thể thao & Văn hóa.</td>
+                                        <td><strong>Cao</strong> (Báo chí chính thống)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `,
+                lessons: `
+                    <div class="modal-section">
+                        <h5>Bài học rút ra từ Bài tập 2</h5>
+                        <p><strong>Nâng cao tư duy nghiên cứu:</strong> Mình đã hiểu rằng không thể trích dẫn nguồn từ các trang mạng tự do, blog cá nhân vô căn cứ khi làm nghiên cứu học thuật. Việc tra cứu APA chuẩn chỉ giúp báo cáo của mình chuyên nghiệp và uy tín hơn hẳn.</p>
                     </div>
                 `
             },
             3: {
-                title: "Viết Prompt hiệu quả cho các tác vụ học tập",
-                badge: "Bài học số 3",
+                title: "Kỹ nghệ Prompt Engineering",
                 docLink: "https://docs.google.com/document/d/1qsH0OEytmg4aEFGkifRbAskr0-a2lHZx/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
-                content: `
+                intro: `
                     <div class="modal-section">
-                        <h5>Mục tiêu</h5>
-                        <p>Nâng cao tư duy giao tiếp với mô hình ngôn ngữ lớn (LLM) để biến trí tuệ nhân tạo thành một trợ lý học tập có cấu trúc.</p>
+                        <h5>Mục tiêu bài thực hành 3</h5>
+                        <p>Làm chủ kỹ năng giao tiếp và đặt câu lệnh (Prompt Engineering) với các mô hình ngôn ngữ lớn (LLM). Thực hành thử nghiệm chéo 3 cấp độ prompt trên DeepSeek, Gemini và Claude để so sánh tính ưu việt và hiệu quả xử lý tri thức.</p>
                     </div>
+                `,
+                process: `
                     <div class="modal-section">
-                        <h5>Thử nghiệm thực tế & So sánh</h5>
-                        <div class="comparison-grid">
-                            <div class="comp-card">
-                                <h6>DeepSeek</h6>
-                                <p style="font-size:0.85rem;">Mạnh về lập luận logic và hệ thống hoá giáo trình (ví dụ: Cơ sở văn hoá VN), tuy nhiên đôi lúc hơi máy móc.</p>
+                        <h5>Thử nghiệm 3 loại Prompt khác nhau</h5>
+                        <p>Bấm vào hộp mô phỏng bên dưới để xem trực quan các câu lệnh chi tiết đã được áp dụng trong bài báo cáo gốc:</p>
+                        
+                        <!-- Interactive Prompt Simulator (Mới bổ sung xịn xò) -->
+                        <div class="prompt-simulator">
+                            <div class="sim-tabs">
+                                <button class="sim-tab-btn active" onclick="simulatePrompt(1)">1. Prompt Cơ Bản (DeepSeek)</button>
+                                <button class="sim-tab-btn" onclick="simulatePrompt(2)">2. Prompt Chi Tiết (Gemini)</button>
+                                <button class="sim-tab-btn" onclick="simulatePrompt(3)">3. Prompt Nâng Cao (Claude)</button>
                             </div>
-                            <div class="comp-card">
-                                <h6>Gemini</h6>
-                                <p style="font-size:0.85rem;">Tốc độ cực nhanh, đa phương thức tốt, ví dụ thực tế liên hệ phong phú nhưng thỉnh thoảng bỏ qua một số ràng buộc nhỏ.</p>
-                            </div>
-                            <div class="comp-card">
-                                <h6>Claude</h6>
-                                <p style="font-size:0.85rem;">Rất sâu sắc, bám sát cấu trúc chỉ lệnh (Instruction-following), văn phong cực kỳ tự nhiên để làm tài liệu học tiếng Hàn.</p>
+                            <div class="sim-content">
+                                <div id="sim-prompt-box">
+                                    <span class="sim-label"><i class="fa-solid fa-terminal"></i> Câu lệnh (Prompt):</span>
+                                    <div class="sim-text">Tóm tắt ngắn gọn nhất cho tôi giáo trình Cơ sở văn hóa Việt Nam (Trần Quốc Vượng).</div>
+                                    <span class="sim-label"><i class="fa-solid fa-robot"></i> Phản hồi giả lập & Nhận xét của Giang:</span>
+                                    <p><strong>DeepSeek:</strong> Trả lời nhanh, cấu trúc rõ ràng, tóm tắt chính xác theo các chương chính. Nhưng văn phong có phần hơi máy móc, thiếu liên hệ cảm xúc.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-section" style="margin-top:15px;">
-                        <h5>Mẹo viết prompt tâm đắc</h5>
-                        <p>Cung cấp bối cảnh rõ ràng + Phân vai trò cụ thể cho AI + Thiết lập định dạng đầu ra mong muốn.</p>
+                `,
+                result: `
+                    <div class="modal-section">
+                        <h5>Phân tích so sánh 3 mô hình AI dựa trên trải nghiệm thực tế</h5>
+                        <div class="comparison-grid">
+                            <div class="comp-card">
+                                <h6>Claude (Anthropic)</h6>
+                                <p style="font-size:0.85rem;"><strong>Ưu điểm vượt trội:</strong> Bám sát cực tốt các ràng buộc phức tạp nhờ "Constitutional AI". Khả năng nhập vai giáo viên tiếng Hàn tuyệt vời, chỉ ra đúng lỗi sai phát âm của người Việt và tạo đề thi rất logic. Văn phong tự nhiên, ít từ sáo rỗng.</p>
+                            </div>
+                            <div class="comp-card">
+                                <h6>Gemini (Google)</h6>
+                                <p style="font-size:0.85rem;"><strong>Ưu điểm:</strong> Phản hồi siêu nhanh, thông tin phong phú, đa phương thức tốt và liên hệ thực tế sinh động (ví dụ việc đặt bàn thờ ở chung cư). <strong>Nhược điểm:</strong> Thường có xu hướng bay bổng quá đà và đôi khi bỏ sót các chi tiết nhỏ.</p>
+                            </div>
+                            <div class="comp-card">
+                                <h6>DeepSeek</h6>
+                                <p style="font-size:0.85rem;"><strong>Ưu điểm:</strong> Tư duy logic, giải toán và phân tích cấu trúc bài đọc cực kỳ xuất sắc. <strong>Nhược điểm:</strong> Đối với các nhiệm vụ sáng tạo có nhiều ràng buộc định dạng hoặc giới hạn số từ, mô hình đôi lúc bị "trôi" định dạng.</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                lessons: `
+                    <div class="modal-section">
+                        <h5>Bài học rút ra từ Bài tập 3</h5>
+                        <p><strong>Tư duy lập lệnh:</strong> AI thông minh hay không phụ thuộc hoàn toàn vào cách chúng ta đặt câu lệnh. Áp dụng 5 nguyên tắc vàng (Bối cảnh rõ ràng, Phân vai trò, Ràng buộc định dạng đầu ra, Chia nhỏ tác vụ, Cung cấp mẫu Few-shot) giúp nâng cao chất lượng câu trả lời lên đến 80%.</p>
                     </div>
                 `
             },
             4: {
-                title: "Hợp tác trực tuyến cho dự án nhóm",
-                badge: "Bài học số 4",
+                title: "Công cụ hợp tác trực tuyến cho dự án nhóm",
                 docLink: "https://docs.google.com/document/d/1q_2l8eYITvMECcLGB7oHacbhD3xPoQva/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
-                content: `
+                intro: `
                     <div class="modal-section">
-                        <h5>Dự án thực tế</h5>
-                        <p>Đồng hành cùng Nhóm 5 thiết kế sản phẩm: "Cẩm nang hướng dẫn học tập hiệu quả cho sinh viên năm nhất".</p>
+                        <h5>Mục tiêu bài thực hành 4</h5>
+                        <p>Trải nghiệm và vận hành thực tế quy trình làm việc nhóm chuyên nghiệp. Ứng dụng bộ công cụ hợp tác trực tuyến thuộc hệ sinh thái Google gồm Planner, Docs và Drive để thiết kế sản phẩm "Cẩm nang học tập hiệu quả cho sinh viên năm nhất".</p>
                     </div>
+                `,
+                process: `
                     <div class="modal-section">
-                        <h5>Ứng dụng bộ ba Google Workspace</h5>
-                        <p><strong>Google Planner:</strong> Thiết lập quy trình công việc theo 3 trạng thái rõ ràng (Not Started - In Progress - Completed) giúp cả nhóm tự kiểm soát tiến độ cá nhân.</p>
-                        <p><strong>Google Docs:</strong> Soạn thảo nội dung đồng thời. Giang trực tiếp phụ trách Chương 2: Phương pháp quản lý thời gian hiệu quả và lập thời gian biểu.</p>
-                        <p><strong>Google Drive:</strong> Thiết kế cấu trúc thư mục 2 cấp và thống nhất quy tắc đặt tên file nghiêm ngặt: <code>[TênNhóm]_[TênThànhViên]_[NộiDung]</code>.</p>
+                        <h5>Quá trình thực hành & Phối hợp</h5>
+                        <p>Trong dự án nhóm cùng Nhóm 5, mình đã đảm nhận các vai trò và thực hiện các bước cấu hình công nghệ như sau:</p>
+                        <p><strong>1. Google Planner (Quản lý dự án):</strong> Thiết lập kế hoạch công việc theo cấu trúc Kanban phân chia rõ rệt các trạng thái <em>Not Started, In Progress, Completed</em>. Tự tạo thói quen đặt báo thức điện thoại lúc 9h tối hàng ngày để vào cập nhật tiến độ, tránh dồn việc.</p>
+                        <p><strong>2. Google Docs (Biên soạn tài liệu cộng tác):</strong> Viết và trực tiếp chỉnh sửa Chương 2: "Kỹ năng quản lý thời gian hiệu quả" (phương pháp Pomodoro, ma trận Eisenhower, lập kế hoạch tuần/tháng, bài tập thực hành). Ghi nhận lịch sử chỉnh sửa tài khoản cá nhân đạt 3 lần chỉnh sửa lớn.</p>
+                        <p><strong>3. Google Drive (Lưu trữ và phân quyền):</strong> Thiết lập cấu trúc thư mục 2 cấp khoa học và đề xuất quy tắc đặt tên file nghiêm ngặt: <code>[TênNhóm]_[TênThànhViên]_[NộiDung].địnhdạng</code> để tránh trùng lặp tệp.</p>
+                    </div>
+                `,
+                result: `
+                    <div class="modal-section">
+                        <h5>Quy chuẩn phân quyền truy cập trong Google Drive</h5>
+                        <ul style="padding-left: 20px;">
+                            <li><strong>Thư mục dùng chung:</strong> Toàn bộ thành viên có quyền Xem & Chỉnh sửa (Editor).</li>
+                            <li><strong>Thư mục cá nhân (Tùng Giang):</strong> Chỉ tài khoản Giang có quyền Chỉnh sửa, các thành viên khác chỉ có quyền Xem (Viewer).</li>
+                            <li><strong>Thư mục bản hoàn chỉnh:</strong> Chỉ nhóm trưởng giữ quyền Chỉnh sửa để nộp bài, các thành viên khác giữ quyền Xem để tránh chỉnh sửa sai sót phút chót.</li>
+                        </ul>
+                    </div>
+                `,
+                lessons: `
+                    <div class="modal-section">
+                        <h5>Bài học rút ra từ Bài tập 4</h5>
+                        <p><strong>Ý thức kỷ luật tập thể:</strong> Công nghệ chỉ phát huy tác dụng tối đa khi có sự cam kết và tính kỷ luật đồng bộ từ tất cả mọi người. Một quy tắc phân quyền chặt chẽ và thói quen đặt tên file thống nhất ngay từ đầu chính là chìa khóa tránh hỗn loạn khi làm việc nhóm lớn.</p>
                     </div>
                 `
             },
             5: {
-                title: "Sáng tạo nội dung số bằng công nghệ AI",
-                badge: "Bài học số 5",
+                title: "Sáng tạo nội dung với AI",
                 docLink: "https://docs.google.com/document/d/1VzuWAkzPRuF1T6bH-Mr4excpyr6YrKDR/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
-                content: `
+                intro: `
                     <div class="modal-section">
-                        <h5>Ý tưởng sáng tạo</h5>
-                        <p>Thiết kế một bản infographic hiện đại giới thiệu <strong>Không gian văn hoá Cồng chiêng Tây Nguyên</strong> - Di sản phi vật thể nhân loại được UNESCO vinh danh.</p>
+                        <h5>Mục tiêu bài thực hành 5</h5>
+                        <p>Ứng dụng tối đa năng lực sáng tạo của trí tuệ nhân tạo để thiết kế một bản infographic trực quan, hấp dẫn giới thiệu di sản "Lễ hội Cồng chiêng Tây Nguyên" đến giới trẻ học đường.</p>
                     </div>
+                `,
+                process: `
                     <div class="modal-section">
-                        <h5>Quy trình 3 bước hợp tác cùng AI</h5>
-                        <p><strong>Bước 1 (ChatGPT):</strong> Lập dàn ý khoa học về nguồn gốc, đặc điểm và ý nghĩa văn hoá, cô đọng văn bản từ 700 từ xuống 400 từ để vừa vặn khuôn khổ đồ hoạ.</p>
-                        <p><strong>Bước 2 (DALL-E):</strong> Vẽ tranh minh hoạ bằng màu nước mô tả người dân tộc biểu diễn cồng chiêng bên ngọn lửa ấm áp và nhà rông Tây Nguyên dưới hoàng hôn.</p>
-                        <p><strong>Bước 3 (Canva AI):</strong> Tự động hoá gợi ý layout, phối theo gam màu ấm thổ cẩm tự nhiên tinh tế.</p>
+                        <h5>Quy trình phối hợp 3 công cụ AI sáng tạo</h5>
+                        <p><strong>Bước 1. Thiết lập nội dung (ChatGPT):</strong> Sử dụng prompt chi tiết để sinh bài viết 700 chữ đầy đủ nguồn gốc, đặc điểm, giá trị văn hoá. Sau đó, Giang tự mình biên tập, rút gọn xuống 400 chữ để vừa vặn khung hình infographic, đồng thời bổ sung thông tin chính xác về mốc thời gian UNESCO ghi danh di sản (năm 2005).</p>
+                        <p><strong>Bước 2. Thiết kế tranh minh hoạ (DALL-E):</strong> Đặt câu lệnh mô tả chi tiết bằng tiếng Anh:</p>
+                        <blockquote style="background: #fafafa; padding: 12px; border-radius: 10px; font-style: italic; margin-bottom: 10px;">
+                            "Create a realistic watercolor illustration of the Central Highlands Gong Festival in Vietnam. Ethnic people wearing traditional costumes are performing gong music around a bonfire with stilt houses, forests, mountains and red basalt soil under sunset lighting."
+                        </blockquote>
+                        <p>AI đã tạo ra một bức tranh màu nước tuyệt đẹp với đầy đủ nhà rông, đồi núi Tây Nguyên và đống lửa trại rực sáng ấm áp.</p>
+                        <p><strong>Bước 3. Dàn trang đồ hoạ (Canva AI):</strong> Nhập lệnh thiết kế infographic hiện đại theo gam màu nóng ấm (warm earth-tone), sử dụng các biểu tượng tinh giản và tiêu đề tiếng Việt nổi bật.</p>
+                    </div>
+                `,
+                result: `
+                    <div class="modal-section">
+                        <h5>Thành phẩm đạt được</h5>
+                        <p>Một bức infographic chuyên nghiệp với bố cục 4 phần rõ ràng (Nguồn gốc -> Đặc điểm nổi bật -> Giá trị văn hóa -> Ý nghĩa ngày nay), sử dụng tông màu đất bazan làm chủ đạo, giúp truyền tải đầy đủ hồn cốt di sản một cách sinh động, hiện đại.</p>
+                    </div>
+                `,
+                lessons: `
+                    <div class="modal-section">
+                        <h5>Bài học rút ra từ Bài tập 5</h5>
+                        <p><strong>Nhận thức về tính kế thừa:</strong> AI giúp rút ngắn 90% thời gian tìm ý tưởng và phác thảo hình ảnh. Tuy nhiên, nếu thiếu đi sự can thiệp tinh chỉnh nghệ thuật và thẩm định văn hoá của con người (ví dụ kiểm tra họa tiết trang phục Tây Nguyên), sản phẩm sẽ dễ bị rập khuôn và lệch chuẩn văn hoá bản địa.</p>
                     </div>
                 `
             },
             6: {
-                title: "Sử dụng trí tuệ nhân tạo có trách nhiệm",
-                badge: "Bài học số 6",
+                title: "Sử dụng AI có trách nhiệm",
                 docLink: "https://docs.google.com/document/d/13_VEQ3qiaunHt--goqEVENaGokv6V9r5/edit?usp=drive_link&ouid=101735809748558350213&rtpof=true&sd=true",
-                content: `
+                intro: `
                     <div class="modal-section">
-                        <h5>Bối cảnh đạo đức học thuật</h5>
-                        <p>Trong thời đại số, ranh giới giữa việc AI hỗ trợ nghiên cứu và gian lận rất mong manh. Giang khẳng định: Học sinh cần đóng vai trò là kiến trúc sư trưởng, chỉ coi AI là trợ tá ý tưởng.</p>
+                        <h5>Mục tiêu bài thực hành 6</h5>
+                        <p>Xây dựng ý thức liêm chính học thuật và đạo đức nghiên cứu khi sử dụng AI tại môi trường đại học ULIS. Thiết lập một bộ quy tắc ứng xử cá nhân và áp dụng trực tiếp vào quá trình chuẩn bị bài nói thuyết trình di sản văn hóa.</p>
                     </div>
+                `,
+                process: `
                     <div class="modal-section">
-                        <h5>Bản cam kết 7 nguyên tắc vàng của Giang</h5>
-                        <p>1. Không thay thế việc học thực tế.</p>
-                        <p>2. Luôn đối chiếu và kiểm chứng chéo thông tin.</p>
-                        <p>3. Tuyệt đối không sao chép nguyên văn (plagiarism).</p>
-                        <p>4. Minh bạch tuyên bố phạm vi sử dụng công nghệ.</p>
-                        <p>5. Tôn trọng bản quyền tác giả và trích dẫn chuẩn mực.</p>
-                        <p>6. Bảo vệ an toàn dữ liệu cá nhân.</p>
-                        <p>7. Luôn giữ vững tư duy phản biện độc lập.</p>
+                        <h5>Ứng dụng chuẩn bị bài thuyết trình 5 phút về Cồng chiêng Tây Nguyên</h5>
+                        <p>Trong quá trình làm bài nói thuyết trình, Giang đã sử dụng tuần tự 4 prompt sau với ChatGPT:</p>
+                        <ul style="padding-left: 20px; margin-bottom: 15px;">
+                            <li><strong>Prompt 1:</strong> Xây dựng dàn ý cho bài thuyết trình khoảng 5 phút về Lễ hội Cồng chiêng Tây Nguyên.</li>
+                            <li><strong>Prompt 2:</strong> Viết phần mở đầu ngắn gọn, hấp dẫn, có nhắc đến đất đỏ bazan và giá trị văn hóa của Tây Nguyên.</li>
+                            <li><strong>Prompt 3:</strong> Giới thiệu nguồn gốc, ý nghĩa và những nét đặc sắc của lễ hội bằng văn phong dễ hiểu.</li>
+                            <li><strong>Prompt 4:</strong> Rút gọn nội dung để phù hợp với thời lượng thuyết trình 5 phút.</li>
+                        </ul>
+                        <p><strong>Đánh giá & Tinh chỉnh của Giang:</strong> Nhận thấy nội dung AI tạo ra còn chung chung, mình đã bổ sung chi tiết UNESCO công nhận di sản phi vật thể đại diện nhân loại, cắt tỉa những câu từ quá dài dòng, sáo rỗng để bài nói trôi chảy, tự nhiên hơn khi đứng trước đám đông.</p>
+                    </div>
+                `,
+                result: `
+                    <div class="modal-section">
+                        <h5>Bộ nguyên tắc 7 chữ vàng sử dụng AI trách nhiệm của Giang</h5>
+                        <p>Bấm/Rê chuột vào các thẻ nguyên tắc dưới đây để xem cách áp dụng chi tiết:</p>
+                        
+                        <!-- Interactive Flip Cards (Mới bổ sung xịn xò) -->
+                        <div class="flip-grid">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fa-solid fa-hands-holding-child"></i>
+                                        <strong>1. Hỗ trợ, không thay thế</strong>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <p>AI chỉ là trợ lý lên ý tưởng. Giang luôn là người nghiên cứu chính và hoàn thành 100% bài làm của mình.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fa-solid fa-square-check"></i>
+                                        <strong>2. Luôn kiểm chứng chéo</strong>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <p>Mọi thông tin AI đưa ra đều phải được đối chiếu lại với giáo trình, tạp chí chính thống hoặc trang tin UNESCO.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fa-solid fa-ban"></i>
+                                        <strong>3. Không sao chép nguyên văn</strong>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <p>Giang luôn chỉnh sửa, biên tập lại 100% câu chữ bằng giọng văn mộc mạc của bản thân để giữ vững liêm chính.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <i class="fa-solid fa-eye"></i>
+                                        <strong>4. Minh bạch tuyên bố sử dụng</strong>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <p>Luôn ghi rõ mục đích, công cụ sử dụng (ví dụ: ChatGPT hỗ trợ lên dàn ý mở bài) ở cuối mỗi báo cáo nộp trường.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                lessons: `
+                    <div class="modal-section">
+                        <h5>Bài học rút ra từ Bài tập 6</h5>
+                        <p><strong>Ý thức đạo đức số:</strong> Việc ghi nhận sự hỗ trợ của AI không làm giảm đi giá trị bài thuyết trình của mình, mà trái lại nó thể hiện tính trung thực, đạo đức nghiên cứu nghiêm túc của một người làm học thuật văn hóa tương lai.</p>
                     </div>
                 `
             }
         };
 
-        // Hàm mở Modal và nạp động nút liên kết tài liệu lên đầu mỗi bài
+        // Hàm mở Modal và render cấu trúc Tabbed Menu tương tác
         function openModal(id) {
             const data = assignmentsData[id];
             if (!data) return;
 
+            // Đặt tiêu đề cho modal
             document.getElementById('m-title').innerHTML = `<i class="fa-solid fa-sparkles" style="color: var(--primary);"></i> ${data.title}`;
             
-            // Thiết kế nút link tài liệu bản gốc ở vị trí đầu tiên của modal body
-            const linkButtonHtml = `
+            // Xây dựng nút xem tài liệu gốc trên Google Docs
+            const docLinkHtml = `
                 <a href="${data.docLink}" target="_blank" class="btn-doc-link">
-                    <i class="fa-regular fa-file-word"></i> Xem tài liệu bài làm bản gốc
+                    <i class="fa-regular fa-file-word"></i> Xem tài liệu bài làm bản gốc (Google Docs)
                 </a>
             `;
+
+            // Nạp nội dung tương ứng vào các thẻ tab
+            const bodyHtml = `
+                ${docLinkHtml}
+                <div id="tab-intro" class="tab-content active">
+                    ${data.intro}
+                </div>
+                <div id="tab-process" class="tab-content">
+                    ${data.process}
+                </div>
+                <div id="tab-result" class="tab-content">
+                    ${data.result}
+                </div>
+                <div id="tab-lessons" class="tab-content">
+                    ${data.lessons}
+                </div>
+            `;
             
-            document.getElementById('m-body').innerHTML = linkButtonHtml + data.content;
-            
+            document.getElementById('m-body').innerHTML = bodyHtml;
+
+            // Reset menu tab về trạng thái tab đầu tiên hoạt động
+            const tabs = document.querySelectorAll('.modal-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabs[0].classList.add('active');
+
+            // Kích hoạt modal hoạt động
             document.getElementById('modal-container').classList.add('active');
-            document.body.style.overflow = 'hidden'; 
+            document.body.style.overflow = 'hidden'; // Khóa cuộn trang nền
         }
 
         function closeModal() {
             document.getElementById('modal-container').classList.remove('active');
-            document.body.style.overflow = 'auto'; 
+            document.body.style.overflow = 'auto'; // Mở khóa cuộn trang nền
         }
 
         // Tự động đóng modal khi nhấn phím Esc
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
+
+        // Hàm giả lập viết Prompt tương tác cho Bài 3 (Mới bổ sung xịn xò)
+        function simulatePrompt(level) {
+            const promptBox = document.getElementById('sim-prompt-box');
+            const tabButtons = document.querySelectorAll('.sim-tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            if (level === 1) {
+                promptBox.innerHTML = `
+                    <span class="sim-label"><i class="fa-solid fa-terminal"></i> Câu lệnh (Prompt Cơ Bản):</span>
+                    <div class="sim-text">"Tóm tắt ngắn gọn nhất cho tôi giáo trình Cơ sở văn hóa Việt Nam (Trần Quốc Vượng)."</div>
+                    <span class="sim-label"><i class="fa-solid fa-robot"></i> Phản hồi giả lập & Nhận xét của Giang:</span>
+                    <p><strong>DeepSeek:</strong> Trả lời nhanh, cấu trúc rõ ràng, tóm tắt chính xác theo các chương chính. Nhưng văn phong có phần hơi máy móc, thiếu liên hệ cảm xúc.</p>
+                `;
+            } else if (level === 2) {
+                promptBox.innerHTML = `
+                    <span class="sim-label"><i class="fa-solid fa-terminal"></i> Câu lệnh (Prompt Chi Tiết):</span>
+                    <div class="sim-text">"Bạn là một cuốn bách khoa toàn thư, hãy giải thích chi tiết khái niệm 'hằng số văn hóa' dưới góc nhìn nhân học, văn hóa học và triết học."</div>
+                    <span class="sim-label"><i class="fa-solid fa-robot"></i> Phản hồi giả lập & Nhận xét của Giang:</span>
+                    <p><strong>Gemini:</strong> Nội dung có cấu trúc khoa học, chính xác chuyên môn. Liên hệ tốt (ví dụ việc đặt bàn thờ ở các căn hộ chung cư). Tuy nhiên phản hồi hơi dài dòng, rườm rà.</p>
+                `;
+            } else if (level === 3) {
+                promptBox.innerHTML = `
+                    <span class="sim-label"><i class="fa-solid fa-terminal"></i> Câu lệnh (Prompt Nâng Cao):</span>
+                    <div class="sim-text">"Bạn là một **giáo viên tiếng Hàn chuyên biệt** về biên soạn đề ôn tập, đã có 10 năm kinh nghiệm dạy người Việt... Hãy xây dựng đề thi từ vựng chủ đề Giao thông áp dụng CoT và Few-shot..."</div>
+                    <span class="sim-label"><i class="fa-solid fa-robot"></i> Phản hồi giả lập & Nhận xét của Giang:</span>
+                    <p><strong>Claude:</strong> Nhận diện cực kỳ xuất sắc vai trò giáo viên, chỉ ra trúng lỗi sai phát âm và nhầm lẫn từ vựng của học sinh Việt (phân biệt 지하철 và 전철). Đề ôn tập được cấu trúc mạch lạc, chuẩn mực nhất.</p>
+                `;
+            }
+        }
     </script>
 </body>
 </html>
